@@ -30,16 +30,16 @@ public class Functional {
     public static Collection<Method> getMethods() {
         return Arrays.asList(
             // equivalent to a comment; gets removed at runtime
-            new Method("note", (e,i) -> ""),
+            new Method("note", (env,in) -> ""),
                 
             // chooses randomly between options
-            new Method("choose", (e,i) -> {return i[(int)(Math.random()*i.length)];}, new String[0]),
+            new Method("choose", (env,in) -> {return in[(int)(Math.random()*in.length)];}, new String[0]),
             
             // picks a random number in the provided range
-            new Method("range", (e,i) -> {
+            new Method("range", (env,in) -> {
                 try{
-                    int first = (int)(Double.parseDouble(i[0].trim()));
-                    int second = (int)(Double.parseDouble(i[1].trim()));
+                    int first = (int)(Double.parseDouble(in[0].trim()));
+                    int second = (int)(Double.parseDouble(in[1].trim()));
                     if(second<first)
                     {
                         int tmp = second;
@@ -48,20 +48,20 @@ public class Functional {
                     }
                     return Integer.toString(first+(int)(Math.random()*(second-first)));
                 } catch(NumberFormatException ex) {
-                    return i[0]+"|"+i[1];
+                    return in[0]+"|"+in[1];
                 }
             }, "|"),
             
             // performs a conditional
-            new Method("if", (e,i) -> {
-                if(evaluateStatement(i[0]))
-                    return i[1];
-                else return i[2];
+            new Method("if", (env,in) -> {
+                if(evaluateStatement(in[0]))
+                    return in[1];
+                else return in[2];
             }, "|then:", "|else:"),
             
             // performs basic mathematical function
-            new Method("math", (e,i) -> {
-                return evaluateMath(i[0]);
+            new Method("math", (env,in) -> {
+                return evaluateMath(in[0]);
             })
         );
     }

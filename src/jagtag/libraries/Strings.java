@@ -33,33 +33,33 @@ public class Strings {
     public static Collection<Method> getMethods() {
         return Arrays.asList(
             // makes all letters lowercase
-            new Method("lower", (e,i) -> i[0].toLowerCase()),
+            new Method("lower", (env,in) -> in[0].toLowerCase()),
                 
             // makes all letters uppercase
-            new Method("upper", (e,i) -> i[0].toUpperCase()),
+            new Method("upper", (env,in) -> in[0].toUpperCase()),
             
             // returns the length of the provided string
-            new Method("length", (e,i) -> Integer.toString(i[0].length())),
+            new Method("length", (env,in) -> Integer.toString(in[0].length())),
             
             // encodes the text to UTF-8 (url standard)
-            new Method("url", (e,i) -> {
+            new Method("url", (env,in) -> {
                 try {
-                    return URLEncoder.encode(i[0], "UTF-8");
+                    return URLEncoder.encode(in[0], "UTF-8");
                 } catch (UnsupportedEncodingException ex) {
-                    return i[0];
+                    return in[0];
                 }
             }),
             
             // replaces some text with other text
-            new Method("replace", (e,i) -> i[2].replace(i[0],i[1]), "|with:", "|in:"),
+            new Method("replace", (env,in) -> in[2].replace(in[0],in[1]), "|with:", "|in:"),
             
             // replaces some text with other text based on a regular expression
             // supports capture groups
-            new Method("replaceregex", (e,i) -> {
+            new Method("replaceregex", (env,in) -> {
                 try {
-                    return i[2].replaceAll(i[0], i[1]);
+                    return in[2].replaceAll(in[0], in[1]);
                 } catch(Exception ex) {
-                    return i[2];
+                    return in[2];
                 }
             }, "|with:", "|in:")
         );

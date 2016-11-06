@@ -37,14 +37,14 @@ public class Example3 {
     public static void main(String[] args) {
         Parser parser = new ParserBuilder()
                 .addMethod(new Method("repeat",
-                        (e) -> e.getOrDefault("last",""), 
-                        (e,i) -> {
-                            String output = i[0];
+                        (env) -> env.getOrDefault("last",""), 
+                        (env,in) -> {
+                            String output = in[0];
                             try{
-                                for(int k=1; k<Integer.parseInt(i[1]); k++)
-                                    output+=i[0];
+                                for(int k=1; k<Integer.parseInt(in[1]); k++)
+                                    output+=in[0];
                             } catch(NumberFormatException ex) {}
-                            e.put("last", output);
+                            env.put("last", output);
                             return output;
                         }, "|times:"))
                 .build();

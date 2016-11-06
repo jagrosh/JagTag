@@ -15,7 +15,6 @@
  */
 package jagtag.libraries;
 
-import jagtag.Environment;
 import jagtag.Method;
 import java.util.Arrays;
 import java.util.Collection;
@@ -33,21 +32,21 @@ public class Variables {
     public static Collection<Method> getMethods() {
         return Arrays.asList(
             // creates a variable if it doesn't exist, and sets it to a value
-            new Method("set", (e,i) -> {
-                HashMap<String,String> vars = e.get("vars");
+            new Method("set", (env,in) -> {
+                HashMap<String,String> vars = env.get("vars");
                 if(vars==null)
                 {
                     vars = new HashMap<>();
-                    e.put("vars",vars);
+                    env.put("vars",vars);
                 }
-                vars.put(i[0], i[1]);
+                vars.put(in[0], in[1]);
                 return "";
             }, "|"),
                 
             // gets the value of a variable
-            new Method("get", (Environment e,String[] i) -> {
-                HashMap<String,String> vars = e.getOrDefault("vars", new HashMap<>());
-                return vars.getOrDefault(i[0], "");
+            new Method("get", (env,in) -> {
+                HashMap<String,String> vars = env.getOrDefault("vars", new HashMap<>());
+                return vars.getOrDefault(in[0], "");
             })
         );
     }

@@ -31,31 +31,31 @@ public class Arguments{
     public static Collection<Method> getMethods() {
         return Arrays.asList(
             // gets the full argument input
-            new Method("args", e -> e.getOrDefault("args","")),
+            new Method("args", env -> env.getOrDefault("args","")),
                 
             // gets the number of arguments when split by whitespace
-            new Method("argslen", e -> {
-                if(e.getOrDefault("args","").length()==0)
+            new Method("argslen", env -> {
+                if(env.getOrDefault("args","").length()==0)
                     return "0";
-                String[] splitargs = e.get("splitargs");
+                String[] splitargs = env.get("splitargs");
                 if(splitargs==null)
                 {
-                    splitargs = e.getOrDefault("args","").split("\\s+");
-                    e.put("splitargs", splitargs);
+                    splitargs = env.getOrDefault("args","").split("\\s+");
+                    env.put("splitargs", splitargs);
                 }
                 return Integer.toString(splitargs.length);
             }),
             
             // gets the argument at the given index, split by whitespace
-            new Method("arg", (e,i) -> {
-                String[] splitargs = e.get("splitargs");
+            new Method("arg", (env,in) -> {
+                String[] splitargs = env.get("splitargs");
                 if(splitargs==null)
                 {
-                    splitargs = e.getOrDefault("args","").split("\\s+");
-                    e.put("splitargs", splitargs);
+                    splitargs = env.getOrDefault("args","").split("\\s+");
+                    env.put("splitargs", splitargs);
                 }
                 try{
-                    return splitargs[Integer.parseInt(i[0]) % splitargs.length];
+                    return splitargs[Integer.parseInt(in[0]) % splitargs.length];
                 }catch(NumberFormatException ex)
                 {
                     return "";

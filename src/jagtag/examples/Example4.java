@@ -16,24 +16,29 @@
 package jagtag.examples;
 
 import jagtag.Method;
+import jagtag.ParseException;
 import jagtag.Parser;
 import jagtag.ParserBuilder;
 
 /**
  *
- * This example shows some simple method creation without using any of the
- * included libraries. Specifically, this example creates a random decimal
- * number between 0 and 100 using two methods, randint and randdecimal.
+ * This example shows the ParseException throwing an exception all the way
+ * up the stack so that the final parsed text is the message of the exception.
  * 
  * @author John Grosh (jagrosh)
  */
-public class Example2 {
+public class Example4 {
     
     public static void main(String[] args) {
         Parser parser = new ParserBuilder()
-                .addMethod(new Method("randint", (env) -> Integer.toString((int)(Math.random()*100))))
-                .addMethod(new Method("randdecimal", (env) -> Double.toString(Math.random()).substring(1)))
+                .addMethod(new Method("check", 
+                        (env,in) -> {
+                            if(in[0].equals("throw"))
+                                throw new ParseException("No throwing!");
+                            return in[0];
+                        }))
                 .build();
-        System.out.println(parser.parse("{randint}{randdecimal}"));
+        System.out.println(parser.parse("{check:this and {check:that and {check:something else}}}"));
+        System.out.println(parser.parse("{check:this and {check:that and {check:throw}}}"));
     }
 }

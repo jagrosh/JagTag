@@ -15,8 +15,6 @@
  */
 package jagtag;
 
-import java.util.function.BiFunction;
-import java.util.function.Function;
 
 /**
  * Represents a single JagTag method. Every method can have a simple computation
@@ -36,11 +34,11 @@ import java.util.function.Function;
  */
 public class Method {
     private final String name;
-    private final Function<Environment,String> simple;
-    private final BiFunction<Environment, String[], String> complex;
+    private final ParseFunction simple;
+    private final ParseBiFunction complex;
     private final String[] splitter;
     
-    public Method(String name, Function<Environment,String> simple, BiFunction<Environment, String[], String> complex, String... splitter)
+    public Method(String name, ParseFunction simple, ParseBiFunction complex, String... splitter)
     {
         this.name = name;
         this.simple = simple;
@@ -48,17 +46,17 @@ public class Method {
         this.splitter = splitter;
     }
     
-    public Method(String name, Function<Environment,String> simple)
+    public Method(String name, ParseFunction simple)
     {
         this(name, simple, null, (String[]) null);
     }
     
-    public Method(String name, BiFunction<Environment, String[], String> complex)
+    public Method(String name, ParseBiFunction complex)
     {
         this(name, null, complex, (String[]) null);
     }
     
-    public Method(String name, BiFunction<Environment, String[], String> complex, String... splitter)
+    public Method(String name, ParseBiFunction complex, String... splitter)
     {
         this(name, null, complex, splitter);
     }

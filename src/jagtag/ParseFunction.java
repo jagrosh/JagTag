@@ -15,24 +15,14 @@
  */
 package jagtag;
 
-import jagtag.libraries.*;
-
 /**
  *
+ * A replacement for the Function class which allows throwing a ParseException
+ * 
  * @author John Grosh (jagrosh)
  */
-public class JagTag {
+public interface ParseFunction {
+
+    public String apply(Environment env) throws ParseException;
     
-    public static String VERSION = "0.2";
-    
-    public static String REPOSITORY_URL = "https://github.com/jagrosh/JagTag";
-    
-    public static ParserBuilder newDefaultBuilder()
-    {
-        return new ParserBuilder()
-            .addMethods(Arguments.getMethods())
-            .addMethods(Functional.getMethods())
-            .addMethods(Strings.getMethods())
-            .addMethods(Variables.getMethods());
-    }
 }
