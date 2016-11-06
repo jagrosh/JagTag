@@ -125,7 +125,7 @@ public class Parser {
                 output = output.substring(0,i2) + filterAll(result) + output.substring(i1+1);
             }
         }
-        output = defilterEscapes(output);
+        output = defilterAll(output);
         if(output.length()>maxOutput)
             output = output.substring(0, maxOutput);
         return output;
