@@ -27,9 +27,12 @@ public class JagTag {
     
     public static String REPOSITORY_URL = "https://github.com/jagrosh/JagTag";
     
-    public static ParserBuilder newDefaultBuilder = new ParserBuilder()
+    public static ParserBuilder newDefaultBuilder()
+    {
+        return new ParserBuilder()
             .addMethods(Arguments.getMethods())
             .addMethods(Functional.getMethods())
             .addMethods(Strings.getMethods())
             .addMethods(Variables.getMethods());
+    }
 }
