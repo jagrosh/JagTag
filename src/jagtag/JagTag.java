@@ -23,7 +23,7 @@ import jagtag.libraries.*;
  */
 public class JagTag {
     
-    public static String VERSION = "0.2";
+    public static String VERSION = "0.3";
     
     public static String REPOSITORY_URL = "https://github.com/jagrosh/JagTag";
     

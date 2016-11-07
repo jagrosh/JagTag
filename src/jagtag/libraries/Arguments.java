@@ -31,16 +31,22 @@ public class Arguments{
     public static Collection<Method> getMethods() {
         return Arrays.asList(
             // gets the full argument input
-            new Method("args", env -> env.getOrDefault("args","")),
+            new Method("args", env -> {
+                String args = env.getOrDefault("args","");
+                return args==null ? "" : args;
+            }),
                 
             // gets the number of arguments when split by whitespace
             new Method("argslen", env -> {
-                if(env.getOrDefault("args","").length()==0)
+                String args = env.getOrDefault("args", "");
+                if(args==null)
+                    args = "";
+                if(args.length()==0)
                     return "0";
                 String[] splitargs = env.get("splitargs");
                 if(splitargs==null)
                 {
-                    splitargs = env.getOrDefault("args","").split("\\s+");
+                    splitargs = args.split("\\s+");
                     env.put("splitargs", splitargs);
                 }
                 return Integer.toString(splitargs.length);
@@ -51,7 +57,10 @@ public class Arguments{
                 String[] splitargs = env.get("splitargs");
                 if(splitargs==null)
                 {
-                    splitargs = env.getOrDefault("args","").split("\\s+");
+                    String args = env.getOrDefault("args","");
+                    if(args==null)
+                        args = "";
+                    splitargs = args.split("\\s+");
                     env.put("splitargs", splitargs);
                 }
                 try{

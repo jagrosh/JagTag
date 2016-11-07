@@ -42,7 +42,7 @@ public class Environment extends HashMap<String,Object> {
             return (T)super.getOrDefault(key, defaultValue);
         } catch(ClassCastException e)
         {
-            return null;
+            return defaultValue;
         }
     }
 }
