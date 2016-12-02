@@ -19,6 +19,27 @@ public class Example
 ```
 Result: `Hello World!!!`
 
+## Maven
+To use Maven with JagTag, simply add the following sections to your pom.xml
+```xml
+  <repository>
+    <snapshots>
+      <enabled>false</enabled>
+    </snapshots>
+    <id>bintray-jagrosh-maven</id>
+    <name>bintray</name>
+    <url>http://dl.bintray.com/jagrosh/maven</url>
+  </repository>
+```
+```xml
+  <dependency>
+    <groupId>me.jagrosh</groupId>
+    <artifactId>JagTag</artifactId>
+    <version>0.4</version>
+    <type>pom</type>
+  </dependency>
+```
+
 ## Current Projects
 Here are some other projects that utilize JagTag:
 * [**Spectra (Discord Bot)**](https://github.com/jagrosh/Spectra) - Spectra uses JagTag in its customizable "tags" (user-created commands), and in welcome and leave messages for servers. (https://github.com/jagrosh/Spectra/blob/master/src/spectra/jagtag/libraries/Discord.java)
