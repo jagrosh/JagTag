@@ -23,9 +23,6 @@ Result: `Hello World!!!`
 To use Maven with JagTag, simply add the following sections to your pom.xml
 ```xml
   <repository>
-    <snapshots>
-      <enabled>false</enabled>
-    </snapshots>
     <id>bintray-jagrosh-maven</id>
     <name>bintray</name>
     <url>http://dl.bintray.com/jagrosh/maven</url>
@@ -36,7 +33,6 @@ To use Maven with JagTag, simply add the following sections to your pom.xml
     <groupId>me.jagrosh</groupId>
     <artifactId>JagTag</artifactId>
     <version>0.4</version>
-    <type>pom</type>
   </dependency>
 ```
 
