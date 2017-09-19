@@ -13,12 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package me.jagrosh.jagtag;
+package com.jagrosh.jagtag;
 
-import me.jagrosh.jagtag.libraries.Arguments;
-import me.jagrosh.jagtag.libraries.Variables;
-import me.jagrosh.jagtag.libraries.Strings;
-import me.jagrosh.jagtag.libraries.Functional;
+import com.jagrosh.jagtag.libraries.Arguments;
+import com.jagrosh.jagtag.libraries.Variables;
+import com.jagrosh.jagtag.libraries.Strings;
+import com.jagrosh.jagtag.libraries.Functional;
+import com.jagrosh.jagtag.libraries.Miscellaneous;
+import com.jagrosh.jagtag.libraries.Time;
 
 /**
  *
@@ -26,7 +28,7 @@ import me.jagrosh.jagtag.libraries.Functional;
  */
 public class JagTag {
     
-    public static String VERSION = "0.3";
+    public static String VERSION = "0.5";
     
     public static String REPOSITORY_URL = "https://github.com/jagrosh/JagTag";
     
@@ -36,6 +38,8 @@ public class JagTag {
             .addMethods(Arguments.getMethods())
             .addMethods(Functional.getMethods())
             .addMethods(Strings.getMethods())
-            .addMethods(Variables.getMethods());
+            .addMethods(Variables.getMethods())
+            .addMethods(Time.getMethods())
+            .addMethods(Miscellaneous.getMethods());
     }
 }

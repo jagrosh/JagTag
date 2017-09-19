@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package me.jagrosh.jagtag.examples;
+package com.jagrosh.jagtag.examples;
 
-import me.jagrosh.jagtag.Parser;
-import me.jagrosh.jagtag.ParserBuilder;
-import me.jagrosh.jagtag.libraries.Functional;
-import me.jagrosh.jagtag.libraries.Strings;
-import me.jagrosh.jagtag.libraries.Variables;
+import com.jagrosh.jagtag.Parser;
+import com.jagrosh.jagtag.ParserBuilder;
+import com.jagrosh.jagtag.libraries.Functional;
+import com.jagrosh.jagtag.libraries.Strings;
+import com.jagrosh.jagtag.libraries.Variables;
 import javax.swing.JOptionPane;
 
 /**

@@ -13,23 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package me.jagrosh.jagtag;
+package com.jagrosh.jagtag.libraries;
+
+import com.jagrosh.jagtag.Method;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.UUID;
 
 /**
- * A JagTag Parsing Exception. Functions identically to a regular exception; the
- * typing is to increase clarity
+ *
+ * Miscellaneous Library
  * 
  * @author John Grosh (jagrosh)
  */
-public class ParseException extends Exception {
-    
-    public ParseException(String message, Throwable cause)
-    {
-        super(message, cause);
+public class Miscellaneous{
+
+    public static Collection<Method> getMethods() {
+        return Arrays.asList(
+                
+            // gets a uuid
+            new Method("uuid", env -> {
+                return UUID.randomUUID().toString();
+            })
+        );
     }
     
-    public ParseException(String message)
-    {
-        super(message);
-    }
 }

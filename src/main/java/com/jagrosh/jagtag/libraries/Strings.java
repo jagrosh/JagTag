@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package me.jagrosh.jagtag.libraries;
+package com.jagrosh.jagtag.libraries;
 
 import java.io.UnsupportedEncodingException;
-import me.jagrosh.jagtag.Method;
+import com.jagrosh.jagtag.Method;
 import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.Collection;
@@ -61,7 +61,50 @@ public class Strings {
                 } catch(Exception ex) {
                     return in[2];
                 }
-            }, "|with:", "|in:")
+            }, "|with:", "|in:"),
+            
+            // takes the substring of the provided string
+            // {substring:start:end|string}
+            // if start or end are not provided (blank), it goes to the 
+            // beginning or end of the string, respectively
+            new Method("substring", (env,in) -> {
+                String str = in[2];
+                int start;
+                int end;
+                try {
+                    start = Integer.parseInt(in[0]);
+                } catch(NumberFormatException e) {
+                    start = 0;
+                }
+                try {
+                    end = Integer.parseInt(in[1]);
+                } catch(NumberFormatException e) {
+                    end = str.length();
+                }
+                if(start<0)
+                    start+=str.length();
+                if(end<0)
+                    end+=str.length();
+                if(end<=start || end<=0 || start>=str.length())
+                    return "";
+                if(end>str.length())
+                    end=str.length();
+                if(start<0)
+                    start=0;
+                return in[2].substring(start,end);
+            },"|","|"),
+            
+            // removes all extraneous newlines and spacing
+            // this enables a user to "pretty-print" their text
+            // and it would still result in a clean output string
+            new Method("oneline", (env,in) -> {
+                return in[0].replaceAll("\\s+", " ").trim();
+            }),
+            
+            // returns a hash of the given input
+            new Method("hash", (env,in) -> {
+                return Integer.toString(in[0].hashCode());
+            })
         );
     }
     

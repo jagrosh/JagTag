@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package me.jagrosh.jagtag.examples;
+package com.jagrosh.jagtag.examples;
 
-import me.jagrosh.jagtag.Method;
-import me.jagrosh.jagtag.Parser;
-import me.jagrosh.jagtag.ParserBuilder;
+import com.jagrosh.jagtag.Method;
+import com.jagrosh.jagtag.Parser;
+import com.jagrosh.jagtag.ParserBuilder;
 
 /**
  *

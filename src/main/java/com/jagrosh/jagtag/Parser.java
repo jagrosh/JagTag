@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package me.jagrosh.jagtag;
+package com.jagrosh.jagtag;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -60,7 +60,7 @@ public class Parser {
      * @param value - the value of the object
      * @return the parser after the object has been added
      */
-    public Parser put(String key, Object value)
+    public synchronized Parser put(String key, Object value)
     {
         environment.put(key, value);
         return this;
@@ -71,7 +71,7 @@ public class Parser {
      * 
      * @return the parser after the objects have been cleared
      */
-    public Parser clear()
+    public synchronized Parser clear()
     {
         environment.clear();
         return this;
@@ -83,7 +83,7 @@ public class Parser {
      * @param input
      * @return the parsed String
      */
-    public String parse(String input)
+    public synchronized String parse(String input)
     {
         String output = filterEscapes(input);
         int count = 0;
@@ -100,7 +100,7 @@ public class Parser {
                 int split = contents.indexOf(":");
                 if(split==-1)
                 {
-                    Method method = methods.get(contents);
+                    Method method = methods.get(contents.trim());
                     if(method!=null)
                         try{
                             result = method.parseSimple(environment);
@@ -112,7 +112,7 @@ public class Parser {
                 {
                     String name = contents.substring(0,split);
                     String params = contents.substring(split+1);
-                    Method method = methods.get(name);
+                    Method method = methods.get(name.trim());
                     if(method!=null)
                         try{
                             result = method.parseComplex(environment, defilterAll(params));
@@ -124,6 +124,7 @@ public class Parser {
                     result = "{"+contents+"}";
                 output = output.substring(0,i2) + filterAll(result) + output.substring(i1+1);
             }
+            count++;
         }
         output = defilterAll(output);
         if(output.length()>maxOutput)
