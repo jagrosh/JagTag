@@ -4,7 +4,7 @@ Some methods are included in the built-in libraries, and additional methods can 
 
 ## Simple Example
 ```java
-import me.jagrosh.jagtag.*;
+import com.jagrosh.jagtag.*;
 public class Example
 {
   public static void main(String[] args)
@@ -30,9 +30,9 @@ To use Maven with JagTag, simply add the following sections to your pom.xml
 ```
 ```xml
   <dependency>
-    <groupId>me.jagrosh</groupId>
+    <groupId>com.jagrosh</groupId>
     <artifactId>JagTag</artifactId>
-    <version>0.4</version>
+    <version>0.5</version>
   </dependency>
 ```
 
