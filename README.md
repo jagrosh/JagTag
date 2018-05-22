@@ -23,9 +23,9 @@ Result: `Hello World!!!`
 To use Maven with JagTag, simply add the following sections to your pom.xml
 ```xml
   <repository>
-    <id>bintray-jagrosh-maven</id>
+    <id>central</id>
     <name>bintray</name>
-    <url>http://dl.bintray.com/jagrosh/maven</url>
+    <url>http://jcenter.bintray.com</url>
   </repository>
 ```
 ```xml
@@ -39,3 +39,8 @@ To use Maven with JagTag, simply add the following sections to your pom.xml
 ## Current Projects
 Here are some other projects that utilize JagTag:
 * [**Spectra (Discord Bot)**](https://github.com/jagrosh/Spectra) - Spectra uses JagTag in its customizable "tags" (user-created commands), and in welcome and leave messages for servers. (https://github.com/jagrosh/Spectra/blob/master/src/spectra/jagtag/libraries/Discord.java)
+
+## Other Libraries
+Below are JagTag-related libraries available for other languages or purposes:
+* [**TheSharks/JagTag-JS**](https://github.com/TheSharks/JagTag-JS) - A JavaScript port of the JagTag text parsing language
+* [**TheMonitorLizard/JagTagXML**](https://github.com/TheMonitorLizard/JagTagXML) - a JagTag to XML transpiler written in Java
