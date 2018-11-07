@@ -76,6 +76,30 @@ public class Parser {
         environment.clear();
         return this;
     }
+
+    /**
+     * Gets an item from the environment, can be used to retrieve objects after parsing
+     *
+     * @param key - the name of the object to retrieve
+     * @return a possibly null object with the specified key
+     * @see #getOrDefault(String, Object)
+     */
+    public synchronized <T> T get(String key)
+    {
+        return environment.get(key);
+    }
+
+    /**
+     * Gets an item from the environment, can be used to retrieve objects after parsing
+     *
+     * @param key - the name of the object to retrieve
+     * @param defaultValue - the default value to return in case no object was found for the specified key
+     * @return the object stored for the key or the default value
+     */
+    public synchronized <T> T getOrDefault(String key, T defaultValue)
+    {
+        return environment.getOrDefault(key, defaultValue);
+    }
     
     /**
      * Parses a String of JagTag code, utilizing the object that have been added
